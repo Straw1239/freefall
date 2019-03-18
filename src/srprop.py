@@ -46,6 +46,10 @@ class SRProp(object):
         for opt, g, gv in zip(self.opts, grads, grad_vars):
             opt.step(g, gv)
 
+    def zero_grad(self):
+        for o in self.opts:
+            o.zero_grad()
+
 
 
 class SRPropT(object):
