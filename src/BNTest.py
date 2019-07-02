@@ -9,6 +9,7 @@ import srprop
 import numpy as np
 import math
 
+
 import argparse as ap
 
 parser = ap.ArgumentParser("Test BN and GBN on image classification datasets")
@@ -36,6 +37,7 @@ data_set = datasets[args.data]
 train_set = data_set(root=root, train=True, transform=trans, download=download)
 test_set = data_set(root=root, train=False, transform=trans)
 
+
 batch_size = 64
 
 train_loader = torch.utils.data.DataLoader(
@@ -48,12 +50,12 @@ test_loader = torch.utils.data.DataLoader(
     shuffle=False, pin_memory=True, num_workers=8)
 
 
+
 from normalization import select_BN
 
 class LeNet(nn.Module):
     def __init__(self):
-        super(LeNet, self).__init__()
-        
+        super(LeNet, self).__init__()        
         self.conv1 = select_BN(nn.Conv2d(3, 40, 5, 1), args.norm)
         self.conv2 = select_BN(nn.Conv2d(40, 40, 5, 1), args.norm)
         self.fc1 = nn.Linear(5 * 5 * 40, 500)
