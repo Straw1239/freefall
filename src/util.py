@@ -22,6 +22,9 @@ def dnorm2(x):
 def dnorm(x):
     return torch.sqrt(dnorm2(x))
 
+def zeros_like(x):
+    return DirectSum([torch.zeros_like(y) for y in x])
+
 class DirectSum:
     def __init__(self, tensors):
         self.tensors = tensors
